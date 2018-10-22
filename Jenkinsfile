@@ -1,4 +1,4 @@
 node {
   checkout scm
-  jobDsl scriptText: 'jobDsl.groovy'
+  job scriptText: 'jobDsl.groovy'
 }
