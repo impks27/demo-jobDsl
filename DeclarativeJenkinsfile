@@ -1,0 +1,7 @@
+job('declarative-job') {
+    logRotator {
+        numToKeep(5)
+        artifactNumToKeep(1)
+    }
+    sh "ls -la"
+}
