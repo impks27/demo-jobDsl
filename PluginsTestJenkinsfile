@@ -1,0 +1,24 @@
+node {
+    println params
+    println env
+    def userInput = input(id: 'userInput', message: 'Merge to?',
+             parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
+                description:'describing choices', name:'nameChoice', choices: "QA\nUAT\nProduction\nDevelop\nMaster"]
+             ])
+
+    println userInput
+    
+    def secondInput = input( id: 'secondInput', message: 'Let\'s promote?', 
+    parameters: [[$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env'],
+        [$class: 'TextParameterDefinition', defaultValue: 'uat1', description: 'Target', name: 'target']
+    ])
+echo ("Env: "+secondInput['env'])
+echo ("Target: "+secondInput['target'])
+    
+    //sh "printenv"
+    //sh "echo $PAYLOAD"
+    Jenkins.instance.pluginManager.plugins.each{
+  plugin -> 
+    println ("${plugin.getDisplayName()} (${plugin.getShortName()}): ${plugin.getVersion()}")
+  }
+}
