@@ -2,16 +2,7 @@ node {
     println params
     println env
     
-    logRotator {
-        // If specified, artifacts from builds older than this number of days will be deleted, but the logs, history, reports, etc for the build will be kept.
-        artifactDaysToKeep(5)
-        // If specified, only up to this number of builds have their artifacts retained.
-        artifactNumToKeep(5)
-        // If specified, build records are only kept up to this number of days.
-        daysToKeep(1)
-        // If specified, only up to this number of build records are kept.
-        numToKeep(1)
-    }
+    logRotator(30, -1, 1, -1)
     
     def userInput = input(id: 'userInput', message: 'Merge to?',
              parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
